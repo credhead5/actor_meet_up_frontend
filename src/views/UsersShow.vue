@@ -7,6 +7,8 @@
     <div v-for="review in user.reviews">
       <p>{{ review.text }}</p>
     </div>
+
+    <br />
   </div>
 </template>
 
