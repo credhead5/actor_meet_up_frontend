@@ -5,10 +5,10 @@
     <h2>{{ user.email }}</h2>
     <h2>{{ user.bio }}</h2>
     <div v-for="review in user.reviews">
-      <p>{{ review.text }}</p>
+      <p>Reviews: {{ review.text }}</p>
     </div>
 
-    <br />
+    <router-link v-if="user.id == $parent.getUserId()" :to="`/users/${user.id}`">Edit</router-link>
   </div>
 </template>
 

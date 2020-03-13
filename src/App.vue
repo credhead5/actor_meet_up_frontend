@@ -6,7 +6,7 @@
       <router-link to="/about">About</router-link>
       |
       <router-link v-if="!isLoggedIn()" class="nav-item" to="/signup">Signup</router-link>
-
+      |
       <router-link v-if="!isLoggedIn()" class="nav-item" to="/login">Login</router-link>
 
       <router-link v-if="isLoggedIn()" class="nav-item" to="/logout">Logout</router-link>
@@ -15,7 +15,7 @@
       |
       <router-link to="/users/new">New Users</router-link>
       |
-      <router-link :to="`/users/${user_id}`">My Account</router-link>
+      <router-link :to="`/users/${getUserId()}`">My Account</router-link>
     </div>
     <router-view />
   </div>
