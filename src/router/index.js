@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import About from "../views/About.vue";
 import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
@@ -17,11 +16,6 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home
-  },
-  {
-    path: "/about",
-    name: "About",
-    component: About
   },
   {
     path: "/signup",
@@ -54,7 +48,7 @@ const routes = [
     component: UsersShow
   }
   // {
-  //   path: "/users/:id",
+  //   path: "/users/:id/edit",
   //   name: "users-edit",
   //   component: UsersEdit
   // }
