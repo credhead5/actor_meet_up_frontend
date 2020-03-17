@@ -1,22 +1,16 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import UsersIndex from "../views/UsersIndex.vue";
 import UsersNew from "../views/UsersNew.vue";
 import UsersShow from "../views/UsersShow.vue";
-// import UsersEdit from "../views/UsersEdit.vue";
+import MeetingsIndex from "../views/MeetingsIndex.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home
-  },
   {
     path: "/signup",
     name: "Signup",
@@ -46,12 +40,12 @@ const routes = [
     path: "/users/:id",
     name: "users-show",
     component: UsersShow
+  },
+  {
+    path: "/meetings",
+    name: "meetings-index",
+    component: MeetingsIndex
   }
-  // {
-  //   path: "/users/:id/edit",
-  //   name: "users-edit",
-  //   component: UsersEdit
-  // }
 ];
 
 const router = new VueRouter({

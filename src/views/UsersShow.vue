@@ -5,28 +5,33 @@
     <h2>{{ user.email }}</h2>
     <h2>{{ user.bio }}</h2>
     <div v-for="review in user.reviews">
-      <p>Reviews: {{ review.text }}</p>
+      Reviews
+      <p>{{ review.text }}</p>
     </div>
-
-    <form v-on:submit.prevent="submit()">
-      <h1>Edit Profile</h1>
-      <ul>
-        <li class="text-danger" v-for="error in errors">{{ error }}</li>
-      </ul>
-      <div class="form-group">
-        <label>User Name:</label>
-        <input type="text" class="form-control" v-model="user.username" />
-      </div>
-      <div class="form-group">
-        <label>Email:</label>
-        <input type="text" class="form-control" v-model="user.email" />
-      </div>
-      <div class="form-group">
-        <label>Bio:</label>
-        <input type="text" class="form-control" v-model="user.bio" />
-      </div>
-      <button type="submit">Edit</button>
-    </form>
+    {{ $parent.getUserId() }}
+    {{ user.id }}
+    <div v-if="$parent.getUserId() == user.id">
+      <form v-on:submit.prevent="submit()">
+        <h1>Edit Profile</h1>
+        <ul>
+          <li class="text-danger" v-for="error in errors">{{ error }}</li>
+        </ul>
+        <div class="form-group">
+          <label>User Name:</label>
+          <input type="text" class="form-control" v-model="user.username" />
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="text" class="form-control" v-model="user.email" />
+        </div>
+        <div class="form-group">
+          <label>Bio:</label>
+          <input type="text" class="form-control" v-model="user.bio" />
+        </div>
+        <button type="submit">Edit</button>
+      </form>
+      <button v-on:click="destroyUser()">Delete Profile</button>
+    </div>
   </div>
 </template>
 
@@ -63,6 +68,14 @@ export default {
         .catch(error => {
           this.errors = error.response.data.errors;
         });
+    },
+    destroyUser: function() {
+      if (confirm("Are you sure you want to delete your profile?")) {
+        axios.delete(`/api/users/${this.user.id}`).then(response => {
+          console.log("Sucessfully Deleted", response.data);
+          this.$router.push("/logout");
+        });
+      }
     }
   }
 };
