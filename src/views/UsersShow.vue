@@ -4,10 +4,20 @@
     <h2>{{ user.username }}</h2>
     <h2>{{ user.email }}</h2>
     <h2>{{ user.bio }}</h2>
+    Review:
     <div v-for="review in user.reviews">
-      Reviews
+      <p>{{ review.evaluator_name }}</p>
       <p>{{ review.text }}</p>
     </div>
+
+    <div>
+      Text:
+      <input type="text" v-model="newReviewText" />
+      <br />
+
+      <button v-on:click="createReview()">Create Review</button>
+    </div>
+
     {{ $parent.getUserId() }}
     {{ user.id }}
     <div v-if="$parent.getUserId() == user.id">
@@ -44,7 +54,8 @@ export default {
   data: function() {
     return {
       user: {},
-      errors: []
+      errors: [],
+      newReviewText: ""
     };
   },
   created: function() {
@@ -67,6 +78,21 @@ export default {
         })
         .catch(error => {
           this.errors = error.response.data.errors;
+        });
+    },
+    createReview: function() {
+      var params = {
+        actor_id: this.user.id,
+        text: this.newReviewText
+      };
+      axios
+        .post("/api/reviews", params)
+        .then(response => {
+          console.log(response.data);
+          this.user.reviews.push(response.data);
+        })
+        .catch(error => {
+          console.log(error.response.data.errors);
         });
     },
     destroyUser: function() {
