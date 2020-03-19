@@ -4,10 +4,13 @@
     <h2>{{ user.username }}</h2>
     <h2>{{ user.email }}</h2>
     <h2>{{ user.bio }}</h2>
-    Review:
+    Reviews:
     <div v-for="review in user.reviews">
       <p>{{ review.evaluator_name }}</p>
       <p>{{ review.text }}</p>
+      <button v-if="$parent.getUserId() == review.evaluator_id" v-on:click="destroyReview(review)">
+        Delete Review
+      </button>
     </div>
 
     <div>
@@ -100,6 +103,15 @@ export default {
         axios.delete(`/api/users/${this.user.id}`).then(response => {
           console.log("Sucessfully Deleted", response.data);
           this.$router.push("/logout");
+        });
+      }
+    },
+    destroyReview: function(review) {
+      if (confirm("Are you sure you want to delete this review?")) {
+        axios.delete(`/api/reviews/${review.id}`).then(response => {
+          console.log("Sucessfully Deleted", response.data);
+          var index = this.user.reviews.indexOf(review);
+          this.user.reviews.splice(index, 1);
         });
       }
     }
