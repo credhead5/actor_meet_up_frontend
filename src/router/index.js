@@ -4,7 +4,6 @@ import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import UsersIndex from "../views/UsersIndex.vue";
-import UsersNew from "../views/UsersNew.vue";
 import UsersShow from "../views/UsersShow.vue";
 import MeetingsIndex from "../views/MeetingsIndex.vue";
 
@@ -30,11 +29,6 @@ const routes = [
     path: "/users",
     name: "users-index",
     component: UsersIndex
-  },
-  {
-    path: "/users/new",
-    name: "users-new",
-    component: UsersNew
   },
   {
     path: "/users/:id",

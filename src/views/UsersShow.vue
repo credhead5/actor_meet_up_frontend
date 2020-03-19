@@ -2,9 +2,11 @@
   <div class="users-show">
     <h1>Profile</h1>
     <h2>{{ user.username }}</h2>
-    <h2>{{ user.email }}</h2>
-    <h2>{{ user.bio }}</h2>
-    Reviews:
+    <h4>{{ user.email }}</h4>
+    <h5>{{ user.bio }}</h5>
+    <img :src="user.image_url" alt="" />
+
+    <h2>Reviews:</h2>
     <div v-for="review in user.reviews">
       <p>{{ review.evaluator_name }}</p>
       <p>{{ review.text }}</p>
@@ -13,12 +15,19 @@
       </button>
     </div>
 
-    <div>
-      Text:
-      <input type="text" v-model="newReviewText" />
-      <br />
+    <div v-if="$parent.getUserId() != user.id">
+      <div>
+        <h2>New Review</h2>
+        Text:
+        <input type="text" v-model="newReviewText" />
+        <br />
 
-      <button v-on:click="createReview()">Create Review</button>
+        <button v-on:click="createReview()">Create Review</button>
+      </div>
+      <div>
+        <h2>New Meeting</h2>
+        <!-- inputs to create a new meeting -->
+      </div>
     </div>
 
     {{ $parent.getUserId() }}
@@ -40,6 +49,10 @@
         <div class="form-group">
           <label>Bio:</label>
           <input type="text" class="form-control" v-model="user.bio" />
+        </div>
+        <div class="form-group">
+          <label>Image:</label>
+          <input type="" class="form-control" v-model="user.image_url" />
         </div>
         <button type="submit">Edit</button>
       </form>
@@ -72,7 +85,8 @@ export default {
       var params = {
         username: this.user.title,
         email: this.user.email,
-        bio: this.user.bio
+        bio: this.user.bio,
+        image_url: this.user.image_url
       };
       axios
         .patch(`/api/users/${this.user.id}`, params)
