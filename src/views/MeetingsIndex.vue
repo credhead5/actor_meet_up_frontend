@@ -1,24 +1,27 @@
 <template>
   <div class="meetings-index">
-    <h1>All Meetings</h1>
+    <h1>My Meetings</h1>
     <div v-for="meeting in meetings">
       <h2>{{ meeting.location }}</h2>
       <h2>{{ meeting.start_time }}</h2>
       <h2>{{ meeting.end_time }}</h2>
       <h2>{{ meeting.partner.username }}</h2>
       <h2>{{ meeting.partner.email }}</h2>
+      <button v-on:click="destroyMeeting(meeting)">
+        Delete Meeting
+      </button>
       <form v-on:submit.prevent="submit()">
         <h1>Edit Meeting</h1>
         <ul>
           <li v-for="error in errors">{{ error }}</li>
         </ul>
         <div class="form-group">
-          <label>Seeker:</label>
-          <input type="text" class="form-control" v-model="meeting.seeker_id" />
+          <label>Start Time:</label>
+          <input type="text" class="form-control" v-model="meeting.start_time" />
         </div>
         <div class="form-group">
-          <label>Fulfiller:</label>
-          <input type="text" class="form-control" v-model="meeting.fulfiller_id" />
+          <label>End Time:</label>
+          <input type="text" class="form-control" v-model="meeting.end_time" />
         </div>
         <div class="form-group">
           <label>Location:</label>
@@ -63,6 +66,15 @@ export default {
         .catch(error => {
           this.errors = error.response.data.errors;
         });
+    },
+    destroyMeeting: function(meeting) {
+      if (confirm("Are you sure you want to delete this meeting?")) {
+        axios.delete(`/api/meetings/${meeting.id}`).then(response => {
+          console.log("Sucessfully Deleted", response.data);
+          var index = this.user.meetings.indexOf(meeting);
+          this.user.meetings.splice(index, 1);
+        });
+      }
     }
   }
 };

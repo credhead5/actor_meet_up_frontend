@@ -26,7 +26,17 @@
       </div>
       <div>
         <h2>New Meeting</h2>
-        <!-- inputs to create a new meeting -->
+        Location:
+        <input type="text" v-model="newMeetingLocation" />
+        <br />
+        Start Time:
+        <input type="text" v-model="newMeetingStartTime" />
+        <br />
+        End Time:
+        <input type="text" v-model="newMeetingEndTime" />
+        <br />
+
+        <button v-on:click="createMeeting()">Create Meeting</button>
       </div>
     </div>
 
@@ -71,7 +81,10 @@ export default {
     return {
       user: {},
       errors: [],
-      newReviewText: ""
+      newReviewText: "",
+      newMeetingLocation: "",
+      newMeetingStartTime: "",
+      newMeetingEndTime: ""
     };
   },
   created: function() {
@@ -107,6 +120,23 @@ export default {
         .then(response => {
           console.log(response.data);
           this.user.reviews.push(response.data);
+        })
+        .catch(error => {
+          console.log(error.response.data.errors);
+        });
+    },
+    createMeeting: function() {
+      var params = {
+        fulfiller_id: this.user.id,
+        location: this.newMeetingLocation,
+        start_time: this.newMeetingStartTime,
+        end_time: this.newMeetingEndTime
+      };
+      axios
+        .post("/api/meetings", params)
+        .then(response => {
+          console.log(response.data);
+          this.user.meetings.push(response.data);
         })
         .catch(error => {
           console.log(error.response.data.errors);
