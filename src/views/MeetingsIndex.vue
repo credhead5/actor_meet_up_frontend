@@ -2,7 +2,7 @@
   <div class="meetings-index">
     <h1>My Meetings</h1>
     <div v-for="meeting in meetings">
-      <h2>{{ meeting.location }}</h2>
+      <h2>{{ meeting.address }}</h2>
       <h2>{{ meeting.start_time }}</h2>
       <h2>{{ meeting.end_time }}</h2>
       <h2>{{ meeting.partner.username }}</h2>
@@ -24,8 +24,8 @@
           <input type="text" class="form-control" v-model="meeting.end_time" />
         </div>
         <div class="form-group">
-          <label>Location:</label>
-          <input type="text" class="form-control" v-model="meeting.location" />
+          <label>Address:</label>
+          <input type="text" class="form-control" v-model="meeting.address" />
         </div>
         <button type="submit">Edit</button>
       </form>
@@ -48,7 +48,6 @@ export default {
   created: function() {
     axios.get("/api/meetings").then(response => {
       this.meetings = response.data;
-      console.log(this.meetings);
     });
   },
   methods: {

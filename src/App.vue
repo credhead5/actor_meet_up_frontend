@@ -12,6 +12,8 @@
       <router-link v-if="isLoggedIn()" class="nav-item" :to="`/users/${getUserId()}`">My Account</router-link>
       |
       <router-link v-if="isLoggedIn()" to="/meetings">My Meetings</router-link>
+      |
+      <router-link v-if="isLoggedIn()" class="nav-item" :to="`/meetings/${getUserId()}`">Meeting Location</router-link>
     </div>
     <router-view :key="$route.params.id" />
   </div>

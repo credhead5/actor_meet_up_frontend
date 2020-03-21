@@ -26,8 +26,8 @@
       </div>
       <div>
         <h2>New Meeting</h2>
-        Location:
-        <input type="text" v-model="newMeetingLocation" />
+        Address:
+        <input type="text" v-model="newMeetingAddress" />
         <br />
         Start Time:
         <input type="text" v-model="newMeetingStartTime" />
@@ -82,7 +82,7 @@ export default {
       user: {},
       errors: [],
       newReviewText: "",
-      newMeetingLocation: "",
+      newMeetingAddress: "",
       newMeetingStartTime: "",
       newMeetingEndTime: ""
     };
@@ -128,7 +128,7 @@ export default {
     createMeeting: function() {
       var params = {
         fulfiller_id: this.user.id,
-        location: this.newMeetingLocation,
+        Address: this.newMeetingAddress,
         start_time: this.newMeetingStartTime,
         end_time: this.newMeetingEndTime
       };

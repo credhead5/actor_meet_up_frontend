@@ -6,6 +6,7 @@ import Logout from "../views/Logout.vue";
 import UsersIndex from "../views/UsersIndex.vue";
 import UsersShow from "../views/UsersShow.vue";
 import MeetingsIndex from "../views/MeetingsIndex.vue";
+import MeetingsShow from "../views/MeetingsShow.vue";
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,11 @@ const routes = [
     path: "/meetings",
     name: "meetings-index",
     component: MeetingsIndex
+  },
+  {
+    path: "/meetings/:id",
+    name: "users-meeting",
+    component: MeetingsShow
   }
 ];
 
