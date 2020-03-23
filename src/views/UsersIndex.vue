@@ -1,5 +1,19 @@
 <template>
   <div class="users-index">
+    <section id="page-tree">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 col-sm-5">
+            <h1>All Actors</h1>
+          </div>
+        </div>
+        <!--row-->
+      </div>
+      <!--container-->
+    </section>
+    <!--page-tree-->
+    <div class="divied-60"></div>
+
     <h1>All Users</h1>
     <div>
       SEARCH:
@@ -13,12 +27,6 @@
     </div>
   </div>
 </template>
-
-<style>
-img {
-  width: 300px;
-}
-</style>
 
 <script>
 import axios from "axios";

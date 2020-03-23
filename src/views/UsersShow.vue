@@ -1,19 +1,80 @@
 <template>
   <div class="users-show">
-    <h1>Profile</h1>
-    <h2>{{ user.username }}</h2>
-    <h4>{{ user.email }}</h4>
-    <h5>{{ user.bio }}</h5>
-    <img :src="user.image_url" alt="" />
+    <section id="page-tree">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 col-sm-5">
+            <h1>{{ user.username }}'s Profile</h1>
+          </div>
+        </div>
+        <!--row-->
+      </div>
+      <!--container-->
+    </section>
+    <!--page-tree-->
+    <div class="divied-60"></div>
 
-    <h2>Reviews:</h2>
-    <div v-for="review in user.reviews">
-      <p>{{ review.evaluator_name }}</p>
-      <p>{{ review.text }}</p>
-      <button v-if="$parent.getUserId() == review.evaluator_id" v-on:click="destroyReview(review)">
-        Delete Review
-      </button>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <img :src="user.image_url" alt="" />
+        </div>
+        <div class="col-md-5">
+          <h3>Description</h3>
+          <p>
+            {{ user.bio }}
+          </p>
+
+          <div class="divied-40"></div>
+          <div class="sidebar-box port-single-desc">
+            <p>
+              <strong>Email:</strong>
+              {{ user.email }}
+            </p>
+          </div>
+
+          <div class="sidebar-box  port-single-desc">
+            <a href="#" class="btn btn-dark">Schedule a meeting</a>
+          </div>
+        </div>
+      </div>
+      <!--portfolio single description row end-->
+
+      <div class="divied-40"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <h3>
+            Reviews
+            <i class="ion-ios7-chatbubble"></i>
+          </h3>
+        </div>
+
+        <div v-for="review in user.reviews" class="col-md-12 margin-btm20">
+          <div class="comment">
+            <i class="ion-person"></i>
+            <h4>
+              {{ review.evaluator_name }} |
+              <span>
+                14 may 2014 |
+                <a
+                  v-if="$parent.getUserId() == review.evaluator_id"
+                  v-on:click="destroyReview(review)"
+                  class="hover-color"
+                >
+                  Delete
+                </a>
+              </span>
+            </h4>
+            <p>
+              {{ review.text }}
+            </p>
+          </div>
+        </div>
+        <!--comment-->
+      </div>
+      <!--comment row-->
     </div>
+    <!--page container end-->
 
     <div v-if="$parent.getUserId() != user.id">
       <div>

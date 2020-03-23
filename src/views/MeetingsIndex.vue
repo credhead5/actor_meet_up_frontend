@@ -1,12 +1,28 @@
 <template>
   <div class="meetings-index">
+    <section id="page-tree">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 col-sm-5">
+            <h1>My Meetings</h1>
+          </div>
+        </div>
+        <!--row-->
+      </div>
+      <!--container-->
+    </section>
+    <!--page-tree-->
+    <div class="divied-60"></div>
+
     <h1>My Meetings</h1>
+
     <div v-for="meeting in meetings">
       <h2>{{ meeting.address }}</h2>
       <h2>{{ meeting.start_time }}</h2>
       <h2>{{ meeting.end_time }}</h2>
       <h2>{{ meeting.partner.username }}</h2>
       <h2>{{ meeting.partner.email }}</h2>
+      <router-link :to="`/meetings/${meeting.id}`">See meeting details</router-link>
       <button v-on:click="destroyMeeting(meeting)">
         Delete Meeting
       </button>
