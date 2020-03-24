@@ -16,10 +16,10 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6 col-xs-12">
           <img :src="user.image_url" alt="" />
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6 col-xs-12">
           <div class="divied-40"></div>
           <h3>Description</h3>
           <p>
@@ -75,7 +75,7 @@
     <div class="divied-60"></div>
     <div v-if="$parent.getUserId() != user.id" class="container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="form-box margin-btm40">
             <form>
               <h3>New Review</h3>
@@ -98,7 +98,7 @@
 
       <div>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="form-box margin-btm40">
               <form>
                 <h3>New Meeting</h3>
@@ -137,7 +137,7 @@
     {{ user.id }}
     <div v-if="$parent.getUserId() == user.id" class="container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="form-box margin-btm40">
             <form v-on:submit.prevent="submit()">
               <h3>Edit Profile</h3>

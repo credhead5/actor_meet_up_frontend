@@ -14,7 +14,7 @@
     <div class="divied-60"></div>
     <div class="container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
           <form v-on:submit.prevent="submit()" class="margin-btm40">
             <ul>
               <li v-for="error in errors">{{ error }}</li>

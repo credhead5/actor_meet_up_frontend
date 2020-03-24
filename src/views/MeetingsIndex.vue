@@ -37,48 +37,8 @@
           </ul>
         </div>
         <router-link :to="`/meetings/${meeting.id}`" class="btn btn-warning">See meeting details</router-link>
-        <div class="divied-35"></div>
-        <a v-on:click="destroyMeeting(meeting)" href="#" class="btn btn-dark">Delete Meeting</a>
       </div>
-      <div class="divied-60"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="form-box margin-btm40">
-              <form v-on:submit.prevent="submit()">
-                <h3>Edit Profile</h3>
-                <ul>
-                  <li class="text-danger" v-for="error in errors">{{ error }}</li>
-                </ul>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>Start Time:</label>
-                      <input type="text" class="form-control" v-model="meeting.start_time" />
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label>End Time:</label>
-                      <input type="email" v-model="meeting.end_time" class="form-control" />
-                    </div>
-                  </div>
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label>Address:</label>
-                      <input type="text" v-model="meeting.address" class="form-control" />
-                    </div>
-                  </div>
-                </div>
-                <div class="sidebar-box  port-single-desc">
-                  <button type="submit" class="btn btn-dark">Edit</button>
-                </div>
-              </form>
-              <!--Contact form-->
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="divied-40"></div>
     </div>
   </div>
 </template>
