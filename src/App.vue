@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="index.html">
-            <!-- <img src="/img/Actor_Meet_Up_3.png" alt="" /> -->
+            <!-- <img src="/img/Actor_Meet_Up.png" alt="" /> -->
           </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -60,11 +60,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <h3><img src="/img/Actor_Meet_Up_3.png" alt="" /></h3>
-            <p>
-              aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. aliqua.adipisicing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magna.
-            </p>
+            <h3><img src="/img/Actor_Meet_Up.png" alt="" /></h3>
             <br />
             <ul class="list-unstyled list-inline social">
               <li>
@@ -124,38 +120,17 @@
               </li>
             </ul>
           </div>
-          <div class="col-md-4">
-            <h3>Recent Post</h3>
-            <ul class="list-unstyled post-list">
-              <li><a href="#" class="hover-color">Blog slide post</a></li>
-              <li><a href="#" class="hover-color">Lorem ipsum dollor</a></li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <h3>Newsletter</h3>
-            <p>
-              aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. aliqua.adipisicing
-              elit
-            </p>
-            <br />
-            <form>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="input-group">
-                    <label class="sr-only" for="subscribe-email">Email address</label>
-                    <input class="form-control" id="subscribe-email" placeholder="enter your mail id.." type="text" />
-                    <span class="input-group-btn">
-                      <button type="submit" class="btn btn-dark">OK</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
+          <div class="col-md-4"></div>
         </div>
       </div>
     </section>
     <!--footer option 2 end here-->
+    <section id="footer-copyright">
+      <div class="container text-center">
+        <span>&copy; Copyright 2014.all right reserved theme by design_mylife</span>
+      </div>
+    </section>
+    <!--footer copyright-->
   </div>
 </template>
 

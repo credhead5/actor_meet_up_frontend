@@ -16,10 +16,11 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-4">
           <img :src="user.image_url" alt="" />
         </div>
         <div class="col-md-5">
+          <div class="divied-40"></div>
           <h3>Description</h3>
           <p>
             {{ user.bio }}
@@ -95,7 +96,7 @@
         </div>
       </div>
 
-      <div class="container">
+      <div>
         <div class="row">
           <div class="col-md-8">
             <div class="form-box margin-btm40">
@@ -170,40 +171,15 @@
                 </div>
               </div>
               <div class="sidebar-box  port-single-desc">
-                <a v-on:click="createMeeting()" href="#" class="btn btn-dark">Schedule a meeting</a>
+                <button type="submit" class="btn btn-dark">Edit</button>
+                <div class="divied-40"></div>
+                <a v-on:click="destroyUser()" href="#" class="btn btn-dark">Delete Profile</a>
               </div>
             </form>
             <!--Contact form-->
           </div>
         </div>
       </div>
-    </div>
-
-    <div v-if="$parent.getUserId() == user.id">
-      <form v-on:submit.prevent="submit()">
-        <h1>Edit Profile</h1>
-        <ul>
-          <li class="text-danger" v-for="error in errors">{{ error }}</li>
-        </ul>
-        <div class="form-group">
-          <label>User Name:</label>
-          <input type="text" class="form-control" v-model="user.username" />
-        </div>
-        <div class="form-group">
-          <label>Email:</label>
-          <input type="text" class="form-control" v-model="user.email" />
-        </div>
-        <div class="form-group">
-          <label>Bio:</label>
-          <input type="text" class="form-control" v-model="user.bio" />
-        </div>
-        <div class="form-group">
-          <label>Image:</label>
-          <input type="" class="form-control" v-model="user.image_url" />
-        </div>
-        <button type="submit">Edit</button>
-      </form>
-      <button v-on:click="destroyUser()">Delete Profile</button>
     </div>
   </div>
 </template>

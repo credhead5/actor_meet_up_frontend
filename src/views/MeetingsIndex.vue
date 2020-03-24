@@ -14,37 +14,71 @@
     <!--page-tree-->
     <div class="divied-60"></div>
 
-    <h1>My Meetings</h1>
-
     <div v-for="meeting in meetings">
-      <h2>{{ meeting.address }}</h2>
-      <h2>{{ meeting.start_time }}</h2>
-      <h2>{{ meeting.end_time }}</h2>
-      <h2>{{ meeting.partner.username }}</h2>
-      <h2>{{ meeting.partner.email }}</h2>
-      <router-link :to="`/meetings/${meeting.id}`">See meeting details</router-link>
-      <button v-on:click="destroyMeeting(meeting)">
-        Delete Meeting
-      </button>
-      <form v-on:submit.prevent="submit()">
-        <h1>Edit Meeting</h1>
-        <ul>
-          <li v-for="error in errors">{{ error }}</li>
-        </ul>
-        <div class="form-group">
-          <label>Start Time:</label>
-          <input type="text" class="form-control" v-model="meeting.start_time" />
+      <div class="container">
+        <h3 class="sidebarbox-title">My Meetings</h3>
+        <div class="sidebar-box">
+          <ul class="list-unstyled cat-list">
+            <li>
+              <a href="#">{{ meeting.address }}</a>
+            </li>
+            <li>
+              <a href="#">{{ meeting.start_time }}</a>
+            </li>
+            <li>
+              <a href="#">{{ meeting.end_time }}</a>
+            </li>
+            <li>
+              <a href="#">{{ meeting.partner.username }}</a>
+            </li>
+            <li>
+              <a href="#">{{ meeting.partner.email }}</a>
+            </li>
+          </ul>
         </div>
-        <div class="form-group">
-          <label>End Time:</label>
-          <input type="text" class="form-control" v-model="meeting.end_time" />
+        <router-link :to="`/meetings/${meeting.id}`" class="btn btn-warning">See meeting details</router-link>
+        <div class="divied-35"></div>
+        <a v-on:click="destroyMeeting(meeting)" href="#" class="btn btn-dark">Delete Meeting</a>
+      </div>
+      <div class="divied-60"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-box margin-btm40">
+              <form v-on:submit.prevent="submit()">
+                <h3>Edit Profile</h3>
+                <ul>
+                  <li class="text-danger" v-for="error in errors">{{ error }}</li>
+                </ul>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Start Time:</label>
+                      <input type="text" class="form-control" v-model="meeting.start_time" />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>End Time:</label>
+                      <input type="email" v-model="meeting.end_time" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label>Address:</label>
+                      <input type="text" v-model="meeting.address" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+                <div class="sidebar-box  port-single-desc">
+                  <button type="submit" class="btn btn-dark">Edit</button>
+                </div>
+              </form>
+              <!--Contact form-->
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Address:</label>
-          <input type="text" class="form-control" v-model="meeting.address" />
-        </div>
-        <button type="submit">Edit</button>
-      </form>
+      </div>
     </div>
   </div>
 </template>
