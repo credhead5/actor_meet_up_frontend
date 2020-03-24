@@ -32,10 +32,6 @@
               {{ user.email }}
             </p>
           </div>
-
-          <div class="sidebar-box  port-single-desc">
-            <a href="#" class="btn btn-dark">Schedule a meeting</a>
-          </div>
         </div>
       </div>
       <!--portfolio single description row end-->
@@ -75,34 +71,114 @@
       <!--comment row-->
     </div>
     <!--page container end-->
-
-    <div v-if="$parent.getUserId() != user.id">
-      <div>
-        <h2>New Review</h2>
-        Text:
-        <input type="text" v-model="newReviewText" />
-        <br />
-
-        <button v-on:click="createReview()">Create Review</button>
+    <div class="divied-60"></div>
+    <div v-if="$parent.getUserId() != user.id" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-box margin-btm40">
+            <form>
+              <h3>New Review</h3>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Text:</label>
+                    <textarea type="text" v-model="newReviewText" class="form-control" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="col-sm-12 text-right">
+                  <button v-on:click="createReview()">Create Review</button>
+                </div>
+              </div>
+            </form>
+            <!--Contact form-->
+          </div>
+        </div>
       </div>
-      <div>
-        <h2>New Meeting</h2>
-        Address:
-        <input type="text" v-model="newMeetingAddress" />
-        <br />
-        Start Time:
-        <input type="text" v-model="newMeetingStartTime" />
-        <br />
-        End Time:
-        <input type="text" v-model="newMeetingEndTime" />
-        <br />
 
-        <button v-on:click="createMeeting()">Create Meeting</button>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-box margin-btm40">
+              <form>
+                <h3>New Meeting</h3>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Address:</label>
+                      <input type="text" v-model="newMeetingAddress" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Start Time:</label>
+                      <input type="email" v-model="newMeetingStartTime" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label>End Time:</label>
+                      <input type="text" v-model="newMeetingEndTime" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+                <div class="sidebar-box  port-single-desc">
+                  <a v-on:click="createMeeting()" href="#" class="btn btn-dark">Schedule a meeting</a>
+                </div>
+              </form>
+              <!--Contact form-->
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     {{ $parent.getUserId() }}
     {{ user.id }}
+    <div v-if="$parent.getUserId() == user.id" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-box margin-btm40">
+            <form v-on:submit.prevent="submit()">
+              <h3>Edit Profile</h3>
+              <ul>
+                <li class="text-danger" v-for="error in errors">{{ error }}</li>
+              </ul>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>User Name:</label>
+                    <input type="text" class="form-control" v-model="user.username" />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" v-model="user.email" class="form-control" />
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Bio:</label>
+                    <input type="text" v-model="user.bio" class="form-control" />
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Image:</label>
+                    <input type="text" v-model="user.image_url" class="form-control" />
+                  </div>
+                </div>
+              </div>
+              <div class="sidebar-box  port-single-desc">
+                <a v-on:click="createMeeting()" href="#" class="btn btn-dark">Schedule a meeting</a>
+              </div>
+            </form>
+            <!--Contact form-->
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div v-if="$parent.getUserId() == user.id">
       <form v-on:submit.prevent="submit()">
         <h1>Edit Profile</h1>
@@ -189,7 +265,7 @@ export default {
     createMeeting: function() {
       var params = {
         fulfiller_id: this.user.id,
-        Address: this.newMeetingAddress,
+        address: this.newMeetingAddress,
         start_time: this.newMeetingStartTime,
         end_time: this.newMeetingEndTime
       };
@@ -198,6 +274,7 @@ export default {
         .then(response => {
           console.log(response.data);
           this.user.meetings.push(response.data);
+          this.$router.push("/meetings");
         })
         .catch(error => {
           console.log(error.response.data.errors);

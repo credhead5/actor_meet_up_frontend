@@ -1,8 +1,18 @@
 <template>
   <div class="login">
+    <section id="page-tree">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 col-sm-5">
+            <h1>Login</h1>
+          </div>
+        </div>
+        <!--row-->
+      </div>
+      <!--container-->
+    </section>
     <div class="container">
       <form v-on:submit.prevent="submit()">
-        <h1>Login</h1>
         <ul>
           <li class="text-danger" v-for="error in errors">{{ error }}</li>
         </ul>

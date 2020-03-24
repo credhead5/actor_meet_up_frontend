@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="index.html">
-            <img src="/img/logo-white.png" class="img-responsive" alt="logo-white" />
+            <!-- <img src="/img/Actor_Meet_Up_3.png" alt="" /> -->
           </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -54,12 +54,13 @@
     </div>
     <!--navigation end-->
     <router-view :key="$route.params.id" />
+    <div class="divied-60"></div>
 
     <section id="footer-option" class="padding-60">
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <h3><img src="img/logo-white.png" class="img-responsive" alt="" /></h3>
+            <h3><img src="/img/Actor_Meet_Up_3.png" alt="" /></h3>
             <p>
               aliqua.adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. aliqua.adipisicing
               elit, sed do eiusmod tempor incididunt ut labore et dolore magna.

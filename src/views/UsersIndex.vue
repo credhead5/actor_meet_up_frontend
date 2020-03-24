@@ -14,19 +14,50 @@
     <!--page-tree-->
     <div class="divied-60"></div>
 
-    <h1>All Users</h1>
-    <div>
-      SEARCH:
-      <input type="text" v-model="bioFilter" />
+    <div class="container">
+      <div>
+        <h3 class="sidebarbox-title">
+          Search:
+
+          <input type="text" v-model="bioFilter" />
+        </h3>
+      </div>
+      <div class="row">
+        <div v-for="user in filterBy(users, bioFilter, 'bio')" class="col-md-4 margin-btm20">
+          <div class="blog-grid-box">
+            <div class="image-sec">
+              <img :src="user.image_url" alt="" />
+              <div class="image-overlay">
+                <p><i class="ion-ios7-plus-empty"></i></p>
+              </div>
+            </div>
+            <!--image-->
+
+            <div class="blog-grid-desc">
+              <h4 href="blog-post.html" class="hover-color">{{ user.username }}</h4>
+
+              <p>
+                {{ user.bio }}
+              </p>
+              <p class="more-button">
+                <router-link :to="`/users/${user.id}`" class="btn btn-xs btn-dark">More Info</router-link>
+              </p>
+              <div class="blog-grid-btm"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--row-->
     </div>
-    <div v-for="user in filterBy(users, bioFilter, 'bio')">
-      <h2>{{ user.username }}</h2>
-      <h2>{{ user.bio }}</h2>
-      <img :src="user.image_url" alt="" />
-      <router-link :to="`/users/${user.id}`">More Info</router-link>
-    </div>
+    <!--container-->
   </div>
 </template>
+
+<style>
+img {
+  width: 300px;
+}
+</style>
 
 <script>
 import axios from "axios";
