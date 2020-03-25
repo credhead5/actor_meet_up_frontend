@@ -18,48 +18,56 @@
       <div class="row">
         <div class="col-md-12">
           <div class="blog-items margin-btm40">
-            <div id="map"></div>
-            <h1><a href="blog-post.html" class="hover-color">Details</a></h1>
-            <ul class="list-inline blog-post-list">
-              <li>
-                <i class="ion-location"></i>
-                {{ meeting.address }}
-              </li>
-              <li>|</li>
-              <li>
-                <a href="#" class="hover-color">
-                  <i class="ion-ios7-time"></i>
-                  {{ meeting.start_time }}
-                </a>
-              </li>
-              <li>-</li>
-              <li>
-                <a href="#" class="hover-color">
-                  {{ meeting.end_time }}
-                </a>
-              </li>
-            </ul>
+            <div class="container"><div id="map"></div></div>
+
+            <div class="container">
+              <h1><a href="blog-post.html" class="hover-color">Details</a></h1>
+              <ul class="list-inline blog-post-list">
+                <li>
+                  <i class="ion-person"></i>
+                  {{ meeting.partner.username }}
+                </li>
+                <li>|</li>
+                <li>
+                  <i class="ion-location"></i>
+                  {{ meeting.address }}
+                </li>
+                <li>|</li>
+                <li>
+                  <a href="#" class="hover-color">
+                    <i class="ion-ios7-time"></i>
+                    {{ formattedDate(meeting.start_time) }}
+                  </a>
+                </li>
+                <li>-</li>
+                <li>
+                  <a href="#" class="hover-color">
+                    {{ formattedDate(meeting.end_time) }}
+                  </a>
+                </li>
+              </ul>
+            </div>
             <div class="divied-40"></div>
             <div class="container">
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                   <div class="form-box margin-btm40">
                     <form v-on:submit.prevent="submit()">
-                      <h3>Edit Profile</h3>
+                      <h3>Edit Meeting</h3>
                       <ul>
                         <li class="text-danger" v-for="error in errors">{{ error }}</li>
                       </ul>
                       <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                           <div class="form-group">
                             <label>Start Time:</label>
                             <input type="text" class="form-control" v-model="meeting.start_time" />
                           </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                           <div class="form-group">
                             <label>End Time:</label>
-                            <input type="email" v-model="meeting.end_time" class="form-control" />
+                            <input type="text" v-model="meeting.end_time" class="form-control" />
                           </div>
                         </div>
                         <div class="col-sm-12">
@@ -69,8 +77,8 @@
                           </div>
                         </div>
                       </div>
-                      <div class="sidebar-box  port-single-desc">
-                        <a type="submit" class="btn btn-dark">Edit</a>
+                      <div>
+                        <button type="submit" class="btn btn-dark">Edit</button>
                       </div>
                     </form>
                     <!--Contact form-->
@@ -94,13 +102,16 @@
 #map {
   top: 0;
   bottom: 0;
-  width: 90%;
+  width: 100%;
   height: 450px;
 }
 </style>
 
 <script>
+/* global mapboxgl */
+/* global mapboxSdk */
 import axios from "axios";
+import moment from "moment";
 
 export default {
   data: function() {
@@ -110,8 +121,9 @@ export default {
     };
   },
   created: function() {
-    axios.get("/api/meetings/18").then(response => {
+    axios.get(`/api/meetings/${this.$route.params.id}`).then(response => {
       this.meeting = response.data;
+      console.log(response.data);
       mapboxgl.accessToken =
         "pk.eyJ1IjoiY3JlZGhlYWQ1IiwiYSI6ImNrODBqeDA5NTBpOWIzbHJsOGl5eW91dnoifQ.kTS4_fLpxHgsUa13zrpGMw";
       var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
@@ -147,7 +159,7 @@ export default {
       axios
         .patch(`/api/meetings/${this.meeting.id}`, params)
         .then(response => {
-          this.$router.push(`/meetings/${this.meeting.id}`);
+          console.log(response.data);
         })
         .catch(error => {
           this.errors = error.response.data.errors;
@@ -162,6 +174,9 @@ export default {
           this.user.meetings.splice(index, 1);
         });
       }
+    },
+    formattedDate: function(date) {
+      return moment(date).format("MMMM Do YYYY, h:mm a");
     }
   }
 

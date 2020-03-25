@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="index.html">
-            <!-- <img src="/img/Actor_Meet_Up.png" alt="" /> -->
+            <img src="/img/Actor_Meet.png" alt="" />
           </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -56,11 +56,10 @@
     <router-view :key="$route.params.id" />
     <div class="divied-60"></div>
 
-    <section id="footer-option" class="padding-60">
-      <div class="container">
+    <section id="footer-option" class="padding-40">
+      <div class="container text-center">
         <div class="row">
-          <div class="col-md-4">
-            <h3><img src="/img/Actor_Meet_Up.png" alt="" /></h3>
+          <div class="col-md-12">
             <br />
             <ul class="list-unstyled list-inline social">
               <li>
@@ -120,7 +119,7 @@
               </li>
             </ul>
           </div>
-          <div class="col-md-4"></div>
+          <div class="col-md-1"></div>
         </div>
       </div>
     </section>

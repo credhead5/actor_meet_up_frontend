@@ -34,12 +34,6 @@
               </div>
               <div class="col-sm-12">
                 <div class="form-group">
-                  <label>Bio:</label>
-                  <textarea class="form-control" v-model="bio" rows="4"></textarea>
-                </div>
-              </div>
-              <div class="col-sm-12">
-                <div class="form-group">
                   <label>Password:</label>
                   <input type="password" class="form-control" v-model="password" />
                 </div>
@@ -73,7 +67,6 @@ export default {
     return {
       username: "",
       email: "",
-      bio: "",
       password: "",
       passwordConfirmation: "",
       errors: []
@@ -91,7 +84,7 @@ export default {
       axios
         .post("/api/users", params)
         .then(respose => {
-          this.$rouster.push("/users");
+          this.$router.push("/login");
         })
         .catch(error => {
           this.errors = error.respose.data.errors;

@@ -22,17 +22,12 @@
         <div class="col-md-6 col-xs-12">
           <div class="divied-40"></div>
           <h3>Description</h3>
-          <p>
-            {{ user.bio }}
-          </p>
+          <p>{{ user.bio }}</p>
 
-          <div class="divied-40"></div>
-          <div class="sidebar-box port-single-desc">
-            <p>
-              <strong>Email:</strong>
-              {{ user.email }}
-            </p>
-          </div>
+          <p>
+            <strong>Email:</strong>
+            {{ user.email }}
+          </p>
         </div>
       </div>
       <!--portfolio single description row end-->
@@ -217,7 +212,7 @@ export default {
       axios
         .patch(`/api/users/${this.user.id}`, params)
         .then(response => {
-          this.$router.push(`/users/${this.user.id}`);
+          this.$router.push("/users");
         })
         .catch(error => {
           this.errors = error.response.data.errors;

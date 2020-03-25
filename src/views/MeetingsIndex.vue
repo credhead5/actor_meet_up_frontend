@@ -16,17 +16,17 @@
 
     <div v-for="meeting in meetings">
       <div class="container">
-        <h3 class="sidebarbox-title">My Meetings</h3>
+        <h3 class="sidebarbox-title">Meeting with {{ meeting.partner.username }}</h3>
         <div class="sidebar-box">
           <ul class="list-unstyled cat-list">
             <li>
               <a href="#">{{ meeting.address }}</a>
             </li>
             <li>
-              <a href="#">{{ meeting.start_time }}</a>
+              <a href="#">{{ formattedDate(meeting.start_time) }}</a>
             </li>
             <li>
-              <a href="#">{{ meeting.end_time }}</a>
+              <a href="#">{{ formattedDate(meeting.end_time) }}</a>
             </li>
             <li>
               <a href="#">{{ meeting.partner.username }}</a>
@@ -47,6 +47,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 
 export default {
   data: function() {
@@ -57,7 +58,10 @@ export default {
   },
   created: function() {
     axios.get("/api/meetings").then(response => {
-      this.meetings = response.data;
+      this.meetings = response.data.sort((meeting1, meeting2) =>
+        meeting1.start_time.localeCompare(meeting2.start_time)
+      );
+      console.log(response.data);
     });
   },
   methods: {
@@ -76,6 +80,10 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
+    formattedDate: function(date) {
+      return moment(date).format("MMMM Do YYYY, h:mm a");
+    },
+
     destroyMeeting: function(meeting) {
       if (confirm("Are you sure you want to delete this meeting?")) {
         axios.delete(`/api/meetings/${meeting.id}`).then(response => {

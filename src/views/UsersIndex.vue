@@ -37,7 +37,7 @@
 
                 <p>{{ user.bio }}</p>
                 <p class="more-button">
-                  <router-link :to="`/users/${user.id}`" class="btn btn-xs btn-dark">Read More</router-link>
+                  <router-link :to="`/users/${user.id}`" class="btn btn-xs btn-dark">More Details</router-link>
                 </p>
               </div>
             </div>
