@@ -23,7 +23,7 @@
           <div class="divied-40"></div>
           <h3>Description</h3>
           <p>{{ user.bio }}</p>
-
+          <div class="divied-40"></div>
           <p>
             <strong>Email:</strong>
             {{ user.email }}
@@ -47,7 +47,7 @@
             <h4>
               {{ review.evaluator_name }} |
               <span>
-                14 may 2014 |
+                {{ formattedDate(review.created_at) }} |
                 <a
                   v-if="$parent.getUserId() == review.evaluator_id"
                   v-on:click="destroyReview(review)"
@@ -128,8 +128,8 @@
       </div>
     </div>
 
-    {{ $parent.getUserId() }}
-    {{ user.id }}
+    <!-- {{ $parent.getUserId() }}
+    {{ user.id }} -->
     <div v-if="$parent.getUserId() == user.id" class="container">
       <div class="row">
         <div class="col-md-12">
@@ -183,6 +183,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 
 export default {
   data: function() {
@@ -232,6 +233,9 @@ export default {
         .catch(error => {
           console.log(error.response.data.errors);
         });
+    },
+    formattedDate: function(date) {
+      return moment(date).format("MMMM Do YYYY");
     },
     createMeeting: function() {
       var params = {

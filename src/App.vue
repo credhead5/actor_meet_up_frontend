@@ -9,8 +9,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">
-            <img src="/img/Actor_Meet.png" alt="" />
+          <a class="navbar-brand" href="/users">
+            <img src="/img/Actor_Meet.png" alt="" class="img-responsive" />
           </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -63,7 +63,7 @@
             <br />
             <ul class="list-unstyled list-inline social">
               <li>
-                <a href="#">
+                <a href="http://www.facebook.com">
                   <i
                     class="ion-social-facebook-outline"
                     data-toggle="tooltip"
@@ -74,7 +74,7 @@
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://twitter.com/ActorsUp">
                   <i
                     class="ion-social-twitter-outline"
                     data-toggle="tooltip"
